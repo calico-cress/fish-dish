@@ -2,13 +2,14 @@
 
 import fs from 'fs';
 import handlErrors from './helper/handle-errors';
+import minimize from './helper/parse-args';
 import parseMail from './parse-mail';
 
 // 例外管理
 handlErrors();
 
-// +++ 引数は全てデコード対象のファイル  +++
-const files = process.argv.slice(2);
+// +++ 引数はデコード対象のファイル or 件名に必須となる文字列 +++
+const argv = minimize(process.argv.slice(2));
 
 // 比較用の型
 interface Comparison {
@@ -17,13 +18,13 @@ interface Comparison {
 }
 
 // 更新日付の降順でソート
-const sorted = files
-  .map((f: string): Comparison => ({ name: f, stat: fs.statSync(f) }))
-  .sort((p: Comparison, l: Comparison): number =>
-    p.stat.mtime <= l.stat.mtime ? 1 : -1
-  );
+const sorted = argv._.map(
+  (f: string): Comparison => ({ name: f, stat: fs.statSync(f) })
+).sort((p: Comparison, l: Comparison): number =>
+  p.stat.mtime <= l.stat.mtime ? 1 : -1
+);
 
 // 実行
 sorted.forEach((s: Comparison): void => {
-  parseMail(s.name);
+  parseMail(s.name, argv.subj);
 });

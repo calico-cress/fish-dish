@@ -26,7 +26,7 @@ export default class ExtractStream extends Transform {
   // デコードする対象
   private buffer: string[] = [];
   // 抽出対象の条件とする件名
-  private readonly requireSubj: string = '';
+  private readonly requiredSubj: string = '';
   // 件名の正規表現（UTF-8のBエンコーディングのみ対象）
   private readonly regexSubj = /Subject:\s=\?UTF-8\?B\?(.+)\?=/;
   // メッセージ本文の読み込み開始条件
@@ -42,12 +42,12 @@ export default class ExtractStream extends Transform {
 
   /**
    * Creates an instance of ExtractStream.
-   * @param {string} [subject='確認コード']
+   * @param {string} subject
    * @memberof ExtractStream
    */
-  public constructor(subject = '確認コード') {
+  public constructor(subject: string) {
     super();
-    this.requireSubj = subject;
+    this.requiredSubj = subject;
   }
   /**
    * チャンクの受け取り
@@ -68,7 +68,7 @@ export default class ExtractStream extends Transform {
         if (
           subj &&
           subj.length > 1 &&
-          this._decode(subj[1]).includes(this.requireSubj)
+          this._decode(subj[1]).includes(this.requiredSubj)
         ) {
           this.status = 'start';
         }
