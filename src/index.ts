@@ -2,14 +2,14 @@
 
 import fs from 'fs';
 import handlErrors from './helper/handle-errors';
-import minimize from './helper/parse-args';
+import parseArgs from './helper/parse-args';
 import parseMail from './parse-mail';
 
 // 例外管理
 handlErrors();
 
 // +++ 引数はデコード対象のファイル or 件名に必須となる文字列 +++
-const argv = minimize(process.argv.slice(2));
+const argv = parseArgs(process.argv.slice(2));
 
 // 比較用の型
 interface Comparison {

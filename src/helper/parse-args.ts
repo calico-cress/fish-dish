@@ -7,7 +7,7 @@ const definition: minimist.Opts = {
     s: 'subj',
   },
   default: {
-    subj: '確認コード',
+    subj: '-+-+-+-',
   },
 };
 
@@ -18,7 +18,7 @@ interface ExecArgs {
   subj: string;
 }
 
-export default function minimize(
+export default function parseArgs(
   argv: string[]
 ): ExecArgs & minimist.ParsedArgs {
   return minimist<ExecArgs>(argv, definition);
