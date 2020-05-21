@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import handlErrors from './helper/handle-errors';
-import parseArgs from './helper/parse-args';
+import parseArgs from './parse-args';
 import parseMail from './parse-mail';
 
 // 例外管理

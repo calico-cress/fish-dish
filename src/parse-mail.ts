@@ -9,8 +9,5 @@ import ExtractStream from './extract-stream';
  */
 export default function parse(path: string, subject: string): void {
   const extract = new ExtractStream(subject);
-  createReadStream(path)
-    .pipe(split2())
-    .pipe(extract)
-    .pipe(process.stdout);
+  createReadStream(path).pipe(split2()).pipe(extract).pipe(process.stdout);
 }
