@@ -1,6 +1,7 @@
 import { createReadStream } from 'fs';
 import split2 from 'split2';
 import ExtractStream from './extract-stream';
+
 /**
  * Streamでemlxをパースする。標準出力にワンタイムパスワードを出力する
  * @export
@@ -8,6 +9,8 @@ import ExtractStream from './extract-stream';
  * @param {string} subject
  */
 export default function parse(path: string, subject: string): void {
-  const extract = new ExtractStream(subject);
-  createReadStream(path).pipe(split2()).pipe(extract).pipe(process.stdout);
+  createReadStream(path)
+    .pipe(split2())
+    .pipe(new ExtractStream(subject))
+    .pipe(process.stdout);
 }
