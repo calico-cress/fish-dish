@@ -61,7 +61,7 @@ typings/
 .next
 
 # メモ
-private.md
+private.*
 
 # コンパイル後の資材は不要
 dist/
