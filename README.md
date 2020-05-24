@@ -7,4 +7,4 @@
 ## メモ
 
 1. webpackでバンドルするかも
-1. Streamを、`AsyncIterator`に変更するかも or Stateパターンに変更するかも
+1. Streamを、`AsyncIterator`に変更 or Stateパターンに変更するかも
