@@ -17,7 +17,7 @@
     "fish-dish": "dist/index.js"
   },
   "dependencies": {
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "moment": "^2.25.1",
     "split2": "^3.1.1",
     "typescript": "^3.9.2"
